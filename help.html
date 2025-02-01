@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Documentation - Infography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="help.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Hamburger Menu -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+            <div class="mobile-menu-content">
+                <button id="close-mobile-menu" class="close-btn">&times;</button>
+                <nav class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html" ><span>🏠</span> Home</a></li>
+                        <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                        <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                        <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                        <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                        <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                        <li><a href="help.html" class="active"><span>📖</span> Help Documentation</a></li>
+                        <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                        <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                        <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infography</h2>
+                <button class="hamburger" id="sidebar-hamburger">☰</button>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><span>🏠</span> Home</a></li>
+                    <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                    <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                    <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                    <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                    <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                    <li><a href="help.html" class="active"><span>📖</span> Help Documentation</a></li>
+                    <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                    <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                    <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="credits">
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+                <div class="user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="content-header">
+                <h1>Help Documentation</h1>
+                <div class="search-container">
+                    <input type="text" id="searchDocs" placeholder="Search documentation...">
+                </div>
+            </header>
+
+            <div class="help-container">
+                <nav class="docs-nav">
+                    <ul>
+                        <li><a href="#edit-infographics" class="active">Edit Infographics</a></li>
+                        <li><a href="#upload-images">Upload Images</a></li>
+                    </ul>
+                </nav>
+
+                <div class="docs-content">
+                    <section id="edit-infographics" class="doc-section">
+                        <h2>Edit Infographics</h2>
+                        <div class="step">
+                            <h3>Step 1: Access Edit Mode</h3>
+                            <p>After generating infographics, locate the "Edit" option below the generated infographic.</p>
+                            <div class="image-container">
+                                <img src="edit-option.png" alt="Edit option location">
+                            </div>
+                        </div>
+                        <div class="step">
+                            <h3>Step 2: Edit Content and Styling</h3>
+                            <p>Modify text, fonts, colors, and layouts.</p>
+                        </div>
+                    </section>
+
+                    <section id="upload-images" class="doc-section">
+                        <h2>Upload Images</h2>
+                        <div class="step">
+                            <h3>Step 1: Access Upload Feature</h3>
+                            <p>Click the "Uploads" button to begin the image upload process.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="help.js"></script>
+</body>
+</html>

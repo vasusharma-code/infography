@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - Infography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="api.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infography</h2>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><span>🏠</span> Home</a></li>
+                    <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                    <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                    <li><a href="brands.html" ><span>🏷️</span> Brands</a></li>
+                    <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                    <li><a href="api.html" class="active"><span>📡</span> API (Free)</a></li>
+                    <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                    <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                    <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                    <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="credits">
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+                <div class="user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu -->
+        <button class="hamburger" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+            <div class="mobile-menu-content">
+                <button id="close-mobile-menu" class="close-btn">&times;</button>
+                <nav class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html"><span>🏠</span> Home</a></li>
+                        <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                        <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                        <li><a href="brands.html" class="active"><span>🏷️</span> Brands</a></li>
+                        <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                        <li><a href="api.html" class="active"><span>📡</span> API (Free)</a></li>
+                        <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                        <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                        <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                        <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <main class="content">
+            <header class="content-header">
+                <h1>API Documentation</h1>
+                <p>Generate infographics programmatically using our REST API</p>
+            </header>
+
+            <div class="api-container">
+                <!-- Endpoint Section -->
+                <section class="api-section">
+                    <div class="endpoint-header">
+                        <span class="method">POST</span>
+                        <span class="endpoint-url">/api/generate</span>
+                    </div>
+                    <p class="endpoint-description">
+                        Generate infographics based on provided content. Authentication required using x-api-key header.
+                    </p>
+
+                    <!-- Authentication -->
+                    <div class="auth-section">
+                        <h3>Authentication</h3>
+                        <div class="code-block">
+                            <pre><code>x-api-key: your-api-key-here</code></pre>
+                            <button class="copy-btn" data-code="x-api-key: your-api-key-here">
+                                <span>📋</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Request Body -->
+                    <div class="request-section">
+                        <h3>Request Body</h3>
+                        <div class="params-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>prompt</td>
+                                        <td>string</td>
+                                        <td>The input prompt to generate infographics</td>
+                                    </tr>
+                                    <tr>
+                                        <td>language</td>
+                                        <td>string</td>
+                                        <td>Output language (Default: English)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ratio</td>
+                                        <td>enum</td>
+                                        <td>Aspect ratio (vertical, square, horizontal, portrait)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Example Request -->
+                        <h4>Example Request</h4>
+                        <div class="code-block">
+                            <pre><code class="language-javascript">const response = await fetch('https://app.infography.in/api/generate', {
+    method: 'POST',
+    headers: {
+        "x-api-key": "your-api-key-here",
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        "prompt": "Generate an infographic from https://example.com/blog",
+        "language": "English",
+        "ratio": "vertical"
+    })
+});</code></pre>
+                            <button class="copy-btn" data-code="const response = await fetch...">
+                                <span>📋</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Response -->
+                    <div class="response-section">
+                        <h3>Response</h3>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+    "imageUrls": [
+        "https://example.com/infographic.png"
+    ]
+}</code></pre>
+                            <button class="copy-btn" data-code='{"imageUrls":["https://example.com/infographic.png"]}'>
+                                <span>📋</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Try It -->
+                    <div class="try-it-section">
+                        <h3>Try It</h3>
+                        <form id="api-test-form" class="api-test-form">
+                            <div class="form-group">
+                                <label for="api-key">API Key</label>
+                                <input type="text" id="api-key" placeholder="Enter your API key">
+                            </div>
+                            <div class="form-group">
+                                <label for="prompt">Prompt</label>
+                                <textarea id="prompt" placeholder="Enter your prompt"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="language">Language</label>
+                                    <select id="language">
+                                        <option value="English">English</option>
+                                        <option value="French">French</option>
+                                        <option value="Spanish">Spanish</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ratio">Ratio</label>
+                                    <select id="ratio">
+                                        <option value="vertical">Vertical (9:16)</option>
+                                        <option value="square">Square (1:1)</option>
+                                        <option value="horizontal">Horizontal (16:9)</option>
+                                        <option value="portrait">Portrait (4:5)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn">Test Endpoint</button>
+                        </form>
+                        <div id="response-display" class="response-display">
+                            <h4>Response</h4>
+                            <pre><code></code></pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="api.js"></script>
+</body>
+</html>

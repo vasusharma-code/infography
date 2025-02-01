@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infography - Create Stunning Infographics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Mobile Hamburger Menu -->
+        <button class="hamburger" aria-label="Toggle menu">☰</button>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+            <div class="mobile-menu-content">
+                <button id="close-mobile-menu" class="close-btn">&times;</button>
+                <nav class="mobile-nav">
+                    <ul>
+                        <li><a href="#" class="active"><span>🏠</span> Home</a></li>
+                        <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                        <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                        <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                        <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                        <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                        <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                        <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                        <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                        <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infography</h2>
+                <!-- Hamburger Button for Mobile -->
+                <button class="hamburger" id="hamburger">☰</button>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" class="active"><span>🏠</span> Home</a></li>
+                    <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                    <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                    <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                    <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                    <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                    <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                    <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                    <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                    <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="credits">
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+                <div class="user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Turn Your Text into Beautiful Infographics</h1>
+                <p>Enter a blog URL or text and hit "Generate" to create stunning visuals.</p>
+            </header>
+
+            <div class="form-wrapper">
+                <div class="form-container">
+                    <select id="source" aria-label="Content Source">
+                        <option value="url">Source: URL</option>
+                        <option value="text">Source: Text</option>
+                    </select>
+                    <select id="ratio" aria-label="Infographic Ratio">
+                        <option value="9:16">Ratio: Vertical (9:16)</option>
+                        <option value="16:9">Ratio: Horizontal (16:9)</option>
+                    </select>
+                    <select id="language" aria-label="Language">
+                        <option value="en">Language: English</option>
+                        <option value="es">Language: Spanish</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="user-input" placeholder="Enter your URL or text here..." aria-label="Input for Infographic">
+                    <button id="generate-btn" aria-label="Generate Infographic">Generate</button>
+                </div>
+            </div>
+
+            <div id="preview" class="preview" aria-live="polite">
+                <p>Preview will appear here...</p>
+            </div>
+
+            <div class="action-buttons">
+                <button id="edit-btn" disabled aria-label="Edit Infographic">Edit</button>
+                <button id="download-btn" disabled aria-label="Download Infographic">Download</button>
+            </div>
+        </main>
+    </div>
+    <script src="scrip.js"></script>
+</body>
+</html>

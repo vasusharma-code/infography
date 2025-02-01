@@ -1,0 +1,143 @@
+.help-container {
+    display: flex;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.search-container {
+    margin-bottom: 24px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+.search-container input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.docs-nav {
+    width: 240px;
+    position: sticky;
+    top: 24px;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.docs-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.docs-nav a {
+    display: block;
+    padding: 12px 16px;
+    color: #475569;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.docs-nav a:hover {
+    background: #f8fafc;
+    color: var(--accent-color);
+}
+
+.docs-nav a.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+.docs-content {
+    flex: 1;
+    max-width: 800px;
+}
+
+.doc-section {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.step {
+    margin-bottom: 40px;
+}
+
+.step h3 {
+    color: #1e293b;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+.image-container {
+    margin: 20px 0;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feature-list {
+    padding-left: 20px;
+    margin: 16px 0;
+    columns: 2;
+}
+
+.font-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.font-option {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: var(--radius-md);
+}
+
+.font-option h4 {
+    margin-bottom: 12px;
+    color: #334155;
+}
+
+@media screen and (max-width: 768px) {
+    .help-container {
+        flex-direction: column;
+    }
+
+    .docs-nav {
+        width: 100%;
+        position: relative;
+        height: auto;
+        margin-bottom: 24px;
+    }
+
+    .doc-section {
+        padding: 20px;
+    }
+
+    .feature-list {
+        columns: 1;
+    }
+
+    .font-options {
+        grid-template-columns: 1fr;
+    }
+}

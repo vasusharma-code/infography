@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brands - Infography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="brands.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Same sidebar and mobile menu structure as other pages -->
+        <button class="hamburger" aria-label="Toggle menu">☰</button>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+            <div class="mobile-menu-content">
+                <button id="close-mobile-menu" class="close-btn">&times;</button>
+                <nav class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html"><span>🏠</span> Home</a></li>
+                        <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                        <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                        <li><a href="brands.html" class="active"><span>🏷️</span> Brands</a></li>
+                        <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                        <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                        <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                        <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                        <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                        <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+            </div>
+        </div>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infography</h2>
+                <!-- Hamburger Button for Mobile -->
+                <button class="hamburger" id="hamburger">☰</button>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><span>🏠</span> Home</a></li>
+                    <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                    <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                    <li><a href="brands.html" class="active"><span>🏷️</span> Brands</a></li>
+                    <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                    <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                    <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                    <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                    <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                    <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="credits">
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+                <div class="user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <div class="header-top">
+                    <h1>Brands</h1>
+                    <button id="create-brand-btn" class="primary-btn">Create Brand</button>
+                </div>
+                <p>Manage your brand assets and styling preferences</p>
+            </header>
+
+            <div id="brands-container">
+                <!-- Empty state -->
+                <div id="empty-state" class="empty-state">
+                    <img src="empty-brands.svg" alt="No brands" class="empty-state-img">
+                    <h2>No brands available</h2>
+                    <p>Create your first brand to get started!</p>
+                    <button class="primary-btn" onclick="showCreateBrandModal()">Create Brand</button>
+                </div>
+
+                <!-- Brands grid will be populated here -->
+                <div id="brands-grid" class="brands-grid" style="display: none;"></div>
+            </div>
+        </main>
+
+        <!-- Create Brand Modal -->
+        <div id="create-brand-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Create New Brand</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <form id="brand-form" class="brand-form">
+                    <div class="form-group">
+                        <label for="brand-name">Brand Name</label>
+                        <input type="text" id="brand-name" required placeholder="Enter brand name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Watermark Type</label>
+                        <div class="radio-group">
+                            <input type="radio" id="watermark-text" name="watermark-type" value="text" checked>
+                            <label for="watermark-text">Text</label>
+                            <input type="radio" id="watermark-image" name="watermark-type" value="image">
+                            <label for="watermark-image">Image</label>
+                        </div>
+                    </div>
+
+                    <div id="watermark-text-input" class="form-group">
+                        <label for="watermark-text-content">Watermark Text</label>
+                        <input type="text" id="watermark-text-content" placeholder="Enter watermark text">
+                    </div>
+
+                    <div id="watermark-image-input" class="form-group" style="display: none;">
+                        <label for="watermark-image-file">Upload Logo</label>
+                        <input type="file" id="watermark-image-file" accept="image/*">
+                        <div id="image-preview"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brand-color">Brand Color</label>
+                        <div class="color-input">
+                            <input type="color" id="brand-color">
+                            <input type="text" id="color-hex" placeholder="#000000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading-font">Heading Font</label>
+                        <select id="heading-font">
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Georgia">Georgia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subheading-font">Subheading Font</label>
+                        <select id="subheading-font">
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Georgia">Georgia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="content-font">Content Font</label>
+                        <select id="content-font">
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Georgia">Georgia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="hideCreateBrandModal()">Cancel</button>
+                        <button type="submit" class="primary-btn">Create Brand</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="brands.js"></script>
+</body>
+</html>

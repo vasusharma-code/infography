@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Infography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar for Desktop -->
+        <aside class="sidebar desktop-menu">
+            <div class="sidebar-header">
+                <h2>Infography</h2>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><span>🏠</span> Home</a></li>
+                    <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                    <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                    <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                    <li><a href="settings.html" class="active"><span>⚙️</span> Settings</a></li>
+                    <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                    <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                    <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                    <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                    <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="credits">
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+                <div class="user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+            <div class="mobile-menu-content">
+                <button id="close-mobile-menu" class="close-btn">&times;</button>
+                <nav class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html"><span>🏠</span> Home</a></li>
+                        <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                        <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                        <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                        <li><a href="settings.html" class="active"><span>⚙️</span> Settings</a></li>
+                        <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                        <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                        <li><a href="feedback.html"><span>📝</span> Give Feedback</a></li>
+                        <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                        <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Toggle Button for Mobile -->
+        <button class="hamburger" aria-label="Toggle menu">☰</button>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="content-header">
+                <h1>Settings</h1>
+                <p>Manage your account settings and preferences</p>
+            </header>
+
+            <div class="settings-container">
+                <!-- Workspace Section -->
+                <section class="settings-section">
+                    <h2>Workspace</h2>
+                    <div class="workspace-info">
+                        <div class="user-avatar">VS</div>
+                        <div class="workspace-details">
+                            <h3>Vasu Sharma</h3>
+                            <button class="edit-btn" onclick="openEditModal()">Edit</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users Section -->
+                <section class="settings-section">
+                    <h2>Users</h2>
+                    <div class="user-list">
+                        <div class="user-item">
+                            <div class="user-info">
+                                <div class="user-avatar">VS</div>
+                                <div class="user-details">
+                                    <h3>Vasu Sharma</h3>
+                                    <p>vasu.sharma1768934@gmail.com</p>
+                                </div>
+                            </div>
+                            <span class="user-role">Admin</span>
+                        </div>
+                    </div>
+                    <button class="primary-btn" onclick="openAddUserModal()">Add Users</button>
+                </section>
+
+                <!-- API Key Section -->
+                <section class="settings-section">
+                    <h2>API Key</h2>
+                    <p class="section-description">
+                        Generate an API key to access our API services. Keep this key secure and don't share it publicly.
+                    </p>
+                    <div class="api-key-container" id="apiKeyContainer">
+                        <input type="text" id="apiKey" readonly placeholder="No API key generated">
+                        <button class="copy-btn" id="copyApiKey" onclick="copyApiKey()">Copy</button>
+                    </div>
+                    <button class="primary-btn" id="generateApiKey" onclick="generateApiKey()">Generate API Key</button>
+                </section>
+
+                <!-- Change Password Section -->
+                <section class="settings-section">
+                    <h2>Change Password</h2>
+                    <p class="section-description">
+                        Click the button below to set a new password or reset your existing password.
+                    </p>
+                    <button class="primary-btn" id="changePasswordBtn" onclick="openPasswordModal()">Change Password</button>
+                </section>
+
+                <!-- Delete Account Section -->
+                <section class="settings-section danger-zone">
+                    <h2>Delete Account</h2>
+                    <p class="section-description warning-text">
+                        Warning: This action cannot be undone. This will permanently delete your account and remove all associated data.
+                    </p>
+                    <button class="danger-btn" id="deleteAccountBtn" onclick="openDeleteModal()">Delete Account</button>
+                </section>
+            </div>
+        </main>
+
+        <!-- Password Change Modal -->
+        <div id="passwordModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Change Password</h2>
+                    <button class="close-modal" onclick="closeModal('passwordModal')">&times;</button>
+                </div>
+                <form id="passwordForm" class="settings-form">
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="closeModal('passwordModal')">Cancel</button>
+                        <button type="submit" class="primary-btn">Update Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Delete Account Confirmation Modal -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Delete Account</h2>
+                    <button class="close-modal" onclick="closeModal('deleteModal')">&times;</button>
+                </div>
+                <form id="deleteForm" class="settings-form">
+                    <p class="warning-text">Please type "DELETE" to confirm account deletion</p>
+                    <div class="form-group">
+                        <input type="text" id="deleteConfirmation" required placeholder="Type DELETE">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="secondary-btn" onclick="closeModal('deleteModal')">Cancel</button>
+                        <button type="submit" class="danger-btn">Delete Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="settings.js"></script>
+</body>
+</html>

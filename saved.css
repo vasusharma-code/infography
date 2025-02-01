@@ -1,0 +1,68 @@
+.saved-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: 20px 0;
+}
+
+.infographic-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.infographic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.infographic-preview {
+    width: 100%;
+    height: 200px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.infographic-details {
+    padding: 16px;
+}
+
+.infographic-details h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.infographic-meta {
+    font-size: 14px;
+    color: #666;
+}
+
+.no-saved-message {
+    text-align: center;
+    padding: 60px 20px;
+    grid-column: 1 / -1;
+}
+
+.empty-state-img {
+    width: 200px;
+    margin-bottom: 24px;
+}
+
+.create-new-btn {
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    margin-top: 16px;
+    transition: background 0.2s ease;
+}
+
+.create-new-btn:hover {
+    background: var(--hover-color);
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Give Feedback - Infography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar and Mobile Menu -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Infography</h2>
+                <button class="hamburger" id="hamburger">☰</button>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html"><span>🏠</span> Home</a></li>
+                    <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                    <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                    <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                    <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                    <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                    <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                    <li><a href="feedback.html" class="active"><span>📝</span> Give Feedback</a></li>
+                    <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                    <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="credits">
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+                <div class="user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                </div>
+            </div>
+        </aside>
+
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+            <div class="mobile-menu-content">
+                <button id="close-mobile-menu" class="close-btn">&times;</button>
+                <nav class="mobile-nav">
+                    <ul>
+                        <li><a href="index.html"><span>🏠</span> Home</a></li>
+                        <li><a href="saved.html"><span>💾</span> Saved</a></li>
+                        <li><a href="templates.html"><span>🖼️</span> Templates</a></li>
+                        <li><a href="brands.html"><span>🏷️</span> Brands</a></li>
+                        <li><a href="settings.html"><span>⚙️</span> Settings</a></li>
+                        <li><a href="api.html"><span>📡</span> API (Free)</a></li>
+                        <li><a href="help.html"><span>📖</span> Help Documentation</a></li>
+                        <li><a href="feedback.html" class="active"><span>📝</span> Give Feedback</a></li>
+                        <li><a href="guide.html"><span>📈</span> Marketing Guide</a></li>
+                        <li><a href="#"><span>⭐</span> Upgrade Plan</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-user-info">
+                    <p>Vasu Sharma</p>
+                    <p>vasu.sharma1768934@gmail.com</p>
+                    <p><strong>5 Credits</strong> left</p>
+                </div>
+            </div>
+        </div>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Give Feedback</h1>
+                <p>Share your thoughts and suggestions to help us improve</p>
+            </header>
+
+            <div class="feedback-container">
+                <div class="create-feedback">
+                    <button id="createPostBtn" class="primary-btn">Create New Post</button>
+                </div>
+
+                <!-- Create Post Modal -->
+                <div id="feedbackModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Create Feedback Post</h2>
+                            <button class="close-modal">&times;</button>
+                        </div>
+                        <form id="feedbackForm" class="feedback-form">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" id="title" required placeholder="Short, descriptive title">
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" required placeholder="Any additional details..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Category</label>
+                                <select id="category" required>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="bug">Bug Report</option>
+                                    <option value="improvement">Improvement</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="secondary-btn" onclick="hideModal()">Cancel</button>
+                                <button type="submit" class="primary-btn">Create Post</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Feedback Posts -->
+                <div id="feedbackPosts" class="feedback-posts">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="feedback.js"></script>
+</body>
+</html>
