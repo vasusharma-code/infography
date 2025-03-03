@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const preview = document.getElementById("preview");
   const userInput = document.getElementById("user-input");
   const creditDisplay = document.querySelector(".credits p");
+
   let remainingCredits = 5;
 
   const GEMINI_API_KEY = "AIzaSyDYGuO7Q2LSPUIyuKzlQKLMvj_5ltr6hAU";
   const MARKUPGO_API_KEY = "d1fcd56a-5879-4d76-9c9b-60a0d9c7b425";
-  // Gemini API endpoint
   const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
   /** 🔔 Show Notifications */
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notification.className = `notification ${type}`;
     notification.textContent = message;
     document.body.appendChild(notification);
+
     setTimeout(() => notification.remove(), 3000);
   }
 
@@ -38,36 +39,38 @@ document.addEventListener("DOMContentLoaded", () => {
     if (creditDisplay) creditDisplay.textContent = `${remainingCredits} Credits Left`;
   }
 
-  /**
-   * 🖌️ Generate Infographic JSON Using Gemini  
-   * The prompt now instructs the AI to return strict JSON with "title", "icons" and "content" keys.
-   */
+  /** 🖌️ Generate Infographic HTML Using Gemini */
   async function generateInfographicFromGemini(userContent) {
-    const prompt = `Create an infographic based on the topic: "${userContent}".
-Return the result strictly as valid JSON (with no extra text) in the following format:
-{
-  "title": "Infographic Title",
-  "icons": ["icon1", "icon2", "icon3"],
-  "content": ["Section 1 content", "Section 2 content", "Section 3 content"]
-}`;
+    const prompt = `Create an infographic in **HTML format** based on this topic: "${userContent}".
+    The HTML should include:
+    - A **main title** inside an <h1> tag.
+    - A **consistent color theme** using inline styles.
+    - Multiple **sections** with icons, headings, and content.
+    - Use **<div> containers** to structure the infographic.
+    - DO NOT include <html>, <head>, or <body> tags.
+    - The result should be a valid **standalone HTML snippet**.`;
+
     try {
       const response = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }]
-        })
+          contents: [{ parts: [{ text: prompt.replace("${userContent}", userContent) }] }],
+        }),
       });
+
       if (!response.ok) throw new Error(`Server error: ${response.status}`);
+
       const result = await response.json();
+
+      // ✅ Check if the response contains valid HTML
       if (result?.candidates?.length > 0) {
-        // Assume the candidate returns JSON text in candidate.content.parts[0].text
         const responseText = result.candidates[0]?.content?.parts?.[0]?.text;
-        try {
-          const data = JSON.parse(responseText);
-          return data;
-        } catch (error) {
-          showNotification("Failed to parse JSON from AI response.", "error");
+
+        if (responseText.includes("<div") || responseText.includes("<h1")) {
+          return responseText.trim();
+        } else {
+          showNotification("Invalid HTML response from AI. Try again.", "error");
           return null;
         }
       } else {
@@ -81,31 +84,34 @@ Return the result strictly as valid JSON (with no extra text) in the following f
     }
   }
 
-  /**
-   * 📸 Capture a Screenshot Using MarkupGo  
-   * Pass the deployed template URL as the source, then capture and display the screenshot.
-   */
-  function captureScreenshot(deployedUrl) {
+  /** 🎨 Render Infographic HTML */
+  function renderInfographicHTML(htmlContent) {
+    preview.innerHTML = htmlContent; // Directly insert the generated HTML into preview
+    generateFinalImage(preview.innerHTML);
+  }
+
+  /** 🖼️ Convert Infographic HTML to Image using MarkupGo */
+  function generateFinalImage(htmlContent) {
     fetch("https://api.markupgo.com/api/v1/image", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": MARKUPGO_API_KEY
+        "x-api-key": MARKUPGO_API_KEY,
       },
       body: JSON.stringify({
         source: {
-          type: "url",
-          url: deployedUrl
+          type: "html",
+          data: htmlContent, // Send full HTML to MarkupGo
         },
         options: {
           format: "png",
           quality: 90,
-          viewport: { width: 800, height: 1200 }
-        }
-      })
+          viewport: { width: 800, height: 1200 },
+        },
+      }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         if (data.url) {
           const finalImg = new Image();
           finalImg.src = data.url;
@@ -116,44 +122,32 @@ Return the result strictly as valid JSON (with no extra text) in the following f
           showNotification("Failed to generate final image.", "error");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error generating final image:", error);
         showNotification("Error processing final image.", "error");
       });
   }
 
-  /**
-   * 🚀 Handle Generate Button Click  
-   * Retrieve data from Gemini, build the deployed template URL using query strings,
-   * and then capture a screenshot of that deployed page.
-   */
+  /** 🚀 Handle Generate Button Click */
   if (generateBtn) {
     generateBtn.addEventListener("click", async () => {
       if (remainingCredits <= 0) {
         showNotification("No credits left!", "error");
         return;
       }
+
       const input = userInput.value.trim();
       if (!validateInput(input)) return;
-      
+
       try {
         generateBtn.disabled = true;
         generateBtn.textContent = "Generating...";
-        const infographicData = await generateInfographicFromGemini(input);
-        if (infographicData) {
-          // Build query string parameters (using "||" as a delimiter for arrays)
-          const title = encodeURIComponent(infographicData.title);
-          const icons = encodeURIComponent(infographicData.icons.join("||"));
-          const content = encodeURIComponent(infographicData.content.join("||"));
 
-          // Construct the deployed template URL (update with your actual Netlify URL)
-          const deployedUrl = `https://your-netlify-site.netlify.app/templates.html?title=${title}&icons=${icons}&content=${content}`;
-          
-          // Capture screenshot of the deployed page and display in preview area
-          captureScreenshot(deployedUrl);
+        const infographicHTML = await generateInfographicFromGemini(input);
+        if (infographicHTML) {
+          renderInfographicHTML(infographicHTML);
           remainingCredits--;
           updateCreditDisplay();
-          showNotification("Infographic generated successfully!", "success");
         }
       } catch (error) {
         console.error("Error:", error);
