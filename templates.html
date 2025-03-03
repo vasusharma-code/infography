@@ -3,10 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Templates - Infography</title>
+    <title>Dynamic Infographic Template</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="templates.css">
+    <style>
+        /* Basic styles for the infographic */
+        .infographic {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            font-family: 'Inter', sans-serif;
+        }
+        .infographic h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+        .section {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .section:first-of-type {
+            border-top: none;
+        }
+        .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -84,6 +112,29 @@
             </div>
         </main>
     </div>
+    <div class="infographic" id="infographic-container">
+        <!-- Infographic content will be injected here -->
+    </div>
     <script src="templates.js"></script>
+    <script>
+        // Parse query parameters
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title') || "Infographic Title";
+        const icons = params.get('icons') ? params.get('icons').split("||") : [];
+        const contentArray = params.get('content') ? params.get('content').split("||") : [];
+
+        // Build the dynamic infographic HTML
+        const container = document.getElementById("infographic-container");
+        let html = `<h1>${title}</h1>`;
+        icons.forEach((icon, idx) => {
+            html += `
+                <div class="section">
+                    <span class="icon">${icon}</span>
+                    <span class="section-content">${contentArray[idx] || ""}</span>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    </script>
 </body>
 </html>
